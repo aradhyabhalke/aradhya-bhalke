@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: default;
+}
+
+/* Main container */
+
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+
+    perspective: 1000px;
+}
+
+/* NAME */
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 70px;
+    font-weight: 800;
+
+    letter-spacing: 8px;
+
+    /* Entrance animation */
+    opacity: 0;
+
+    animation:
+        entrance 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+        neonColor 5s infinite linear 1.8s,
+        glowPulse 2s infinite ease-in-out 1.8s;
+
+    transition: transform 0.15s ease-out;
+}
+
+/* Cool entrance */
+
+@keyframes entrance {
+
+    0% {
+        opacity: 0;
+        transform:
+            scale(0.2)
+            translateY(100px)
+            rotateX(60deg);
+
+        filter: blur(20px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0)
+            rotateX(0deg);
+
+        filter: blur(0);
+    }
+}
+
+/* Changing neon colors */
+
+@keyframes neonColor {
+
+    0% {
+        color: #ff0055;
+
+        text-shadow:
+            0 0 5px #ff0055,
+            0 0 15px #ff0055,
+            0 0 30px #ff0055,
+            0 0 60px #ff0055;
+    }
+
+    20% {
+        color: #ff00ff;
+
+        text-shadow:
+            0 0 5px #ff00ff,
+            0 0 15px #ff00ff,
+            0 0 30px #ff00ff,
+            0 0 60px #ff00ff;
+    }
+
+    40% {
+        color: #5500ff;
+
+        text-shadow:
+            0 0 5px #5500ff,
+            0 0 15px #5500ff,
+            0 0 30px #5500ff,
+            0 0 60px #5500ff;
+    }
+
+    60% {
+        color: #00ccff;
+
+        text-shadow:
+            0 0 5px #00ccff,
+            0 0 15px #00ccff,
+            0 0 30px #00ccff,
+            0 0 60px #00ccff;
+    }
+
+    80% {
+        color: #00ff88;
+
+        text-shadow:
+            0 0 5px #00ff88,
+            0 0 15px #00ff88,
+            0 0 30px #00ff88,
+            0 0 60px #00ff88;
+    }
+
+    100% {
+        color: #ff0055;
+
+        text-shadow:
+            0 0 5px #ff0055,
+            0 0 15px #ff0055,
+            0 0 30px #ff0055,
+            0 0 60px #ff0055;
+    }
+}
+
+/* Breathing glow */
+
+@keyframes glowPulse {
+
+    0%, 100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.5);
+    }
+}
+
+/* Mouse-following glow */
+
+.mouse-glow {
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 255, 255, 0.18) 0%,
+            rgba(0, 100, 255, 0.08) 30%,
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        left 0.08s linear,
+        top 0.08s linear;
+
+    z-index: 1;
+
+    filter: blur(10px);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 35px;
+        letter-spacing: 4px;
+    }
+
+    .mouse-glow {
+        display: none;
+    }
+}
